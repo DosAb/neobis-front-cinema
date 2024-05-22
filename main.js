@@ -79,7 +79,7 @@ releaseBtn.addEventListener('click', (event)=>{
 })
 topBestBtn.addEventListener('click', (event)=>{
     event.preventDefault()
-    // Shrel is the best 
+    // Shrek is the best movie ever
     getMovies(`/api/v2.1/films/search-by-keyword?keyword=шрэк`, 'films')
     // getMovies(`/api/v2.2/films/collections?type=TOP_250_MOVIES&page=1`, 'items')
 })
