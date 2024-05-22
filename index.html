@@ -3,9 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cinema</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <main>
+        <header class="header">
+            <div class="logo-container">
+                <a href="index.html" class="logo">CINEMA</a>
+            </div>
+            <form class="search-container">
+                <input placeholder="Search" type="text" name="" id="search-input" maxlength="30">
+                <button id="search-btn"><img src="./assets/search.svg" alt="search"></button>
+            </form>
+        </header>
+        <nav>
+            <div class="filters">
+                <button class="premier__btn-filter">Premieres of the current month</button>
+                <button class="release__btn-filter">Top releases</button>
+                <button class="best__btn-filter">Top best movies</button>
+                <button class="upcoming__btn-filter">Top upcoming movies</button>
+            </div>
+            <div class="favorites">
+                <button class="favorites__btn">favorites</button>
+            </div>
+        </nav>
+        <div class="movies-section">
+            <div id="movie" class="movie-container">
+                <div class="movie-info">
+                    <div class="movie-info-top">
+                        <h3 class="movie-rating">8.6</h3>
+                        <div class="heart" id="heart"></div>
+                    </div>
+                    <div class="movie-info-bottom">
+                        <h4 class="movie-title">jaws</h4>
+                        <h4 class="movie-genre">horror</h4>
+                    </div>
+                </div>
+                <img class="test-img" src="./assets/warior.jpg" alt="gif">
+            </div>
+        </div>
+    </main>
+    <script src="./main.js"></script>
 </body>
 </html>
