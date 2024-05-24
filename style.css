@@ -34,6 +34,7 @@ main{
     align-items: center;
     margin: 0px -32px 32px;
     padding: 16px 32px;
+    gap: 16px;
 }
 
 .logo{
@@ -42,10 +43,6 @@ main{
     text-decoration: none;
     color: #fffbfc;
     font-size: 2rem;
-}
-
-.logo img{
-    width: 32px;
 }
 
 .search-container{
@@ -91,7 +88,7 @@ nav{
 }
 
 nav button{
-    font-size: 1rem;
+    font-size: 1.2rem;
     background-color: #1f1f1f; 
     border: none;
     border-radius: 20px;
@@ -176,9 +173,52 @@ nav button:hover{
     width: 100%;
 }
 
+@media screen and (max-width: 1024px){
+    .movies-section{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .logo img{
+        width: 96px;
+    }
+    .search-container {
+        padding: 12px;
+    }
+    .search-container input {
+        font-size: 1.2rem;
+    }
+
+    nav button {
+        padding: 12px 26px;
+        font-size: 1rem;
+    }
+    
+}
 @media screen and (max-width: 768px){
+    main{
+        padding: 0 16px;
+    }
+    nav{
+        /* flex-direction: column-reverse; */
+        gap: 1rem;
+        margin-bottom: 32px;
+    }
     .movies-section{
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    nav button{
+        display: inline-block;
+        width: auto;
+    }
+
+    .filters{
+        width: 100%;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        /* flex-direction: column; */
+        margin-bottom: 0;
+        gap: 1rem;
     }
     
 }
@@ -189,16 +229,16 @@ nav button:hover{
     }
 
     .logo img{
-        width: 16px;
+        width: 64px;
     }
 
     .search-container{
         width: 80%;
         padding: 8px;
     }
+
     .search-container input{
         font-size: 1rem;
-
     }
     
     #search-btn{
