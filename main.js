@@ -18,18 +18,6 @@ function getRandomRating()
     return randomNumber
 }
 
-function onlyUnique(value, index, array) {
-    return array.indexOf(value) === index
-}
-
-function getUnique(arr)
-{
-    const array = arr
-    const uniqueArray = array.filter(onlyUnique)
-
-    return uniqueArray
-}
-
 
 let moviesIdArray = JSON.parse(localStorage.getItem('id')) ? JSON.parse(localStorage.getItem('id')) : []
 
@@ -177,9 +165,7 @@ moviesSection.addEventListener('click', (event)=>{
 favoritesBtn.addEventListener('click', (event)=>{
     event.preventDefault()
     moviesSection.innerHTML = ''
-    const cleanArray = getUnique(moviesIdArray)
-    console.log(cleanArray)
-    cleanArray.forEach((id)=>{
+    moviesIdArray.forEach((id)=>{
 
         getFavorites(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${id}` )
     })

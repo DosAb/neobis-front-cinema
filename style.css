@@ -128,7 +128,6 @@ nav button:hover{
 }
 
 
-
 .movie-rating{
     display: inline-block;
     padding: 1rem;
@@ -136,6 +135,17 @@ nav button:hover{
     border-radius: 50%;
     background: #282828;
 }
+
+
+.movie-info-bottom{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    margin: -1rem;
+    padding: 1rem;
+    background: #0b0b0b80;
+}
+
 
 
 
