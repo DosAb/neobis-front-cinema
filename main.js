@@ -19,7 +19,7 @@ function getRandomRating()
 }
 
 function onlyUnique(value, index, array) {
-    return array.indexOf(value) === index;
+    return array.indexOf(value) === index
 }
 
 function getUnique(arr)
