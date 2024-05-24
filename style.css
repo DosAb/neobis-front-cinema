@@ -2,7 +2,7 @@
     --main-bg-color: #0b0b0b;
     --main-color: #F3FFBD;
     --secondary-color: #fffbfc;
-    --teritary-color: #1F1A38;
+    --teritary-color: #a0c5ff;
     --dark-color: #13070C;
 }
 
@@ -138,14 +138,18 @@ nav button:hover{
 
 
 .movie-info-bottom{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    gap: 10px;
     font-size: 1.5rem;
     margin: -1rem;
     padding: 1rem;
     background: #0b0b0b80;
 }
 
+.movie-genre{
+    font-size: 1.2rem;
+    color: var(--teritary-color);
+}
 
 
 
