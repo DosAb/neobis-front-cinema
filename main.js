@@ -35,9 +35,9 @@ let moviesIdArray = JSON.parse(localStorage.getItem('id')) ? JSON.parse(localSto
 
         // FETCH THE DATA
 
-async function getMovies(type, dataKey)
+async function getMovies(link, dataKey)
 {
-    const url = `https://kinopoiskapiunofficial.tech${type}`
+    const url = link
     moviesSection.innerHTML = ''
     try{
         const responce = await fetch(url, {
@@ -85,9 +85,10 @@ async function getMovies(type, dataKey)
     }
 }
 
-async function getFavorites(type, )
+async function getFavorites(link)
 {
-    const url = `https://kinopoiskapiunofficial.tech${type}`
+    // const url = `https://kinopoiskapiunofficial.tech${link}`
+    const url = link
     moviesSection.innerHTML = ''
     try{
         const responce = await fetch(url, {
@@ -126,30 +127,30 @@ async function getFavorites(type, )
 
 
     // EVENT LISTENERS
-getMovies('/api/v2.2/films/collections', 'items')
+getMovies('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections', 'items')
 
 searchBtn.addEventListener('click', (event)=>{
     event.preventDefault()
-    getMovies(`/api/v2.1/films/search-by-keyword?keyword=${inputValue.value}`, 'films')
+    getMovies(`https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${inputValue.value}`, 'films')
 
 })
 premiereBtn.addEventListener('click', (event)=>{
     event.preventDefault()
-    getMovies(`/api/v2.2/films/premieres?year=2024&month=JULY`, 'items')
+    getMovies(`https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?year=2024&month=JULY`, 'items')
 })
 releaseBtn.addEventListener('click', (event)=>{
     event.preventDefault()    
-    getMovies(`/api/v2.1/films/releases?year=2024&month=MAY`, 'releases')
+    getMovies(`https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=2024&month=MAY`, 'releases')
 })
 topBestBtn.addEventListener('click', (event)=>{
     event.preventDefault()
     // Shrek is the best movie ever
-    getMovies(`/api/v2.1/films/search-by-keyword?keyword=шрэк`, 'films')
+    getMovies(`https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=шрэк`, 'films')
     // getMovies(`/api/v2.2/films/collections?type=TOP_250_MOVIES&page=1`, 'items')
 })
 upcomingBtn.addEventListener('click', (event)=>{
     event.preventDefault()    
-    getMovies(`/api/v2.2/films/top?type=TOP_AWAIT_FILMS`, 'films')
+    getMovies(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS`, 'films')
 })
 
 
@@ -180,7 +181,7 @@ favoritesBtn.addEventListener('click', (event)=>{
     console.log(cleanArray)
     cleanArray.forEach((id)=>{
 
-        getFavorites(`/api/v2.2/films/${id}` )
+        getFavorites(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${id}` )
     })
     console.log('favorites')
 })
