@@ -10,6 +10,10 @@ const favoritesBtn = document.querySelector('.favorites__btn')
 // const APIKey = 'b708a630-cac0-45bd-bce4-9d8d8cce2fde'
 const APIKey = 'f35c0ed1-b929-4f42-8e83-348e935c1beb'
 
+let loadOnScroll = false
+let currentSection = 'main'
+let mainPageCount = 1
+
 function getRandomRating()
 {
     let randomNumber = (Math.random() * 0.7 + 0.3) * 10
@@ -23,10 +27,10 @@ let moviesIdArray = JSON.parse(localStorage.getItem('id')) ? JSON.parse(localSto
 
         // FETCH THE DATA
 
-async function getMovies(link, dataKey)
+async function getMovies(link, dataKey, clear = false)
 {
     const url = link
-    moviesSection.innerHTML = ''
+    clear ? null : moviesSection.innerHTML = '' 
     try{
         const responce = await fetch(url, {
             method: 'GET',
@@ -67,6 +71,11 @@ async function getMovies(link, dataKey)
         `
         moviesSection.insertAdjacentHTML('beforeend', gifContainer)
         })
+
+        if(clear == true)
+        {
+            loadOnScroll = false
+        }
     
     }catch (err){
         console.log(err.message)
@@ -115,30 +124,49 @@ async function getFavorites(link)
 
 
     // EVENT LISTENERS
-getMovies('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections', 'items')
+getMovies('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_ALL&page=1', 'items')
 
 searchBtn.addEventListener('click', (event)=>{
     event.preventDefault()
+    currentSection = 'search'
     getMovies(`https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${inputValue.value}`, 'films')
 
 })
 premiereBtn.addEventListener('click', (event)=>{
     event.preventDefault()
+    currentSection = 'premiers'
     getMovies(`https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?year=2024&month=JULY`, 'items')
 })
 releaseBtn.addEventListener('click', (event)=>{
     event.preventDefault()    
+    currentSection = 'releases'
     getMovies(`https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=2024&month=MAY`, 'releases')
 })
 topBestBtn.addEventListener('click', (event)=>{
     event.preventDefault()
+    currentSection = 'best'
     // Shrek is the best movie ever
     getMovies(`https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=шрэк`, 'films')
     // getMovies(`/api/v2.2/films/collections?type=TOP_250_MOVIES&page=1`, 'items')
 })
 upcomingBtn.addEventListener('click', (event)=>{
     event.preventDefault()    
+    currentSection = 'upcoming'
     getMovies(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS`, 'films')
+})
+
+window.addEventListener('scroll', ()=>{
+    const scrolledTo = window.scrollY + window.innerHeight
+    const threshold = 300
+    const isReachBottom = document.body.scrollHeight - threshold <= scrolledTo
+
+    if (isReachBottom && currentSection == 'main') {
+        if(loadOnScroll == false){
+            loadOnScroll = true
+            getMovies(`https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_ALL&page=${mainPageCount + 1}`, 'items', true)
+            mainPageCount += 1 
+        }
+    }
 })
 
 
